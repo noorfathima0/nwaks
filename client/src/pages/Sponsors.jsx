@@ -1,7 +1,10 @@
 import { Crown, Star, Medal } from "lucide-react"
 import { Link } from "react-router-dom"
+import { useLanguage } from "../context/LanguageContext"
 
 export default function Sponsors() {
+  const { t } = useLanguage()
+
   return (
     <div className="bg-background">
 
@@ -9,10 +12,10 @@ export default function Sponsors() {
       <section className="bg-primary/90 text-white py-24 text-center">
         <div className="container mx-auto px-6">
           <h1 className="font-heading text-4xl md:text-5xl mb-4">
-            Our Sponsors
+            {t.sponsors.title}
           </h1>
           <p className="text-lg md:text-2xl text-gray-200">
-            Thank you to our generous sponsors who make our events possible
+            {t.sponsors.subtitle}
           </p>
         </div>
       </section>
@@ -24,12 +27,12 @@ export default function Sponsors() {
           <div className="text-center mb-12">
             <Crown className="mx-auto text-secondary mb-4" size={40} />
             <h2 className="font-heading text-3xl text-primary">
-              Platinum Sponsors
+              {t.sponsors.platinum.title}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {["ABC Enterprises", "XYZ Corporation"].map((sponsor, index) => (
+            {t.sponsors.platinum.sponsors.map((sponsor, index) => (
               <div
                 key={index}
                 className="bg-white p-10 rounded-3xl shadow-lg text-center hover:shadow-xl transition"
@@ -47,12 +50,12 @@ export default function Sponsors() {
           <div className="text-center mb-12">
             <Star className="mx-auto text-secondary mb-4" size={40} />
             <h2 className="font-heading text-3xl text-primary">
-              Gold Sponsors
+              {t.sponsors.gold.title}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {["Tech Solutions LLC", "Global Services Inc"].map((sponsor, index) => (
+            {t.sponsors.gold.sponsors.map((sponsor, index) => (
               <div
                 key={index}
                 className="bg-white p-8 rounded-2xl shadow-md text-center hover:shadow-lg transition"
@@ -70,16 +73,12 @@ export default function Sponsors() {
           <div className="text-center mb-12">
             <Medal className="mx-auto text-secondary mb-4" size={40} />
             <h2 className="font-heading text-3xl text-primary">
-              Silver Sponsors
+              {t.sponsors.silver.title}
             </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              "Local Business Co",
-              "Community Store",
-              "Family Restaurant",
-            ].map((sponsor, index) => (
+            {t.sponsors.silver.sponsors.map((sponsor, index) => (
               <div
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-sm text-center hover:shadow-md transition"
@@ -95,19 +94,18 @@ export default function Sponsors() {
         {/* BECOME A SPONSOR CTA */}
         <section className="bg-white rounded-3xl shadow-lg p-12 text-center max-w-4xl mx-auto">
           <h2 className="font-heading text-3xl text-primary mb-6">
-            Become a Sponsor
+            {t.sponsors.cta.title}
           </h2>
 
           <p className="text-charcoal text-lg leading-relaxed mb-8">
-            Support our community events and gain visibility among our members.
-            Contact us to learn about sponsorship opportunities.
+            {t.sponsors.cta.description}
           </p>
 
           <Link
             to="/contact"
             className="inline-block bg-secondary text-charcoal px-8 py-3 rounded-lg font-semibold hover:bg-support transition"
           >
-            Contact Us
+            {t.sponsors.cta.button}
           </Link>
         </section>
 

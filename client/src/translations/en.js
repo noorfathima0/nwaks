@@ -723,7 +723,8 @@ const en = {
       title: "Past Events",
       subtitle: "A look back at our memorable events.",
     },
-
+    
+    /* remove later */
     advertisement: {
       sponsoredEvent: {
         title: "Sponsored Event",
@@ -733,6 +734,28 @@ const en = {
       advertise: {
         title: "Advertise With Us",
         description: "Reach hundreds of Kannada families in Northwest Arkansas through our events and online presence.",
+        button: "Contact Us"
+      }
+    },
+
+    sponsors: {
+      title: "Our Sponsors",
+      subtitle: "Thank you to our generous sponsors who make our events possible",
+      platinum: {
+        title: "Platinum Sponsors",
+        sponsors: ["ABC Enterprises", "XYZ Corporation"]
+      },
+      gold: {
+        title: "Gold Sponsors",
+        sponsors: ["Tech Solutions LLC", "Global Services Inc"]
+      },
+      silver: {
+        title: "Silver Sponsors",
+        sponsors: ["Local Business Co", "Community Store", "Family Restaurant"]
+      },
+      cta: {
+        title: "Become a Sponsor",
+        description: "Support our community events and gain visibility among our members. Contact us to learn about sponsorship opportunities.",
         button: "Contact Us"
       }
     }
