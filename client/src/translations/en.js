@@ -745,6 +745,7 @@ const en = {
         title: "Platinum Sponsors",
         sponsors: ["ABC Enterprises", "XYZ Corporation"]
       },
+      visit: "Visit Website",
       gold: {
         title: "Gold Sponsors",
         sponsors: ["Tech Solutions LLC", "Global Services Inc"]

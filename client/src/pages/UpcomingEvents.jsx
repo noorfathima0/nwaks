@@ -1,9 +1,49 @@
-import { Calendar, Clock, MapPin } from "lucide-react"
+import { Calendar, MapPin } from "lucide-react"
 import { useLanguage } from "../context/LanguageContext"
+import { useEffect, useState } from "react"
+import { getUpcomingEvents } from "../api/events"
 
 export default function UpcomingEvents() {
-  const {t} = useLanguage()
+
+  const { t, language } = useLanguage()
+  console.log("Current language: ", language)
+
+  const [events, setEvents] = useState([])
+
+  const langKey = language === "KN" ? "kn" : "en"
+
+  const getText = (field) => {
+    if (!field) return ""
+    return field[langKey] ? field[langKey] : field.en
+  }
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    })
+  }
+
+  useEffect(() => {
+
+  const fetchEvents = async () => {
+    try {
+      const res = await getUpcomingEvents()
+      setEvents(res.data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  fetchEvents()
+
+}, [language])
+
   return (
+
     <div className="bg-background">
 
       {/* PAGE HERO */}
@@ -12,84 +52,72 @@ export default function UpcomingEvents() {
           <h1 className="font-heading text-4xl md:text-5xl mb-4">
             {t.upcomingEvents.title}
           </h1>
+
           <p className="text-lg md:text-2xl text-gray-200">
             {t.upcomingEvents.subtitle}
           </p>
         </div>
       </section>
 
+
       <div className="container mx-auto px-6 py-24">
-        <div className="grid md:grid-cols-2 gap-8">
-          {[
-            {
-              title: "Mahashivarathri 2026",
-              date: "February 26, 2026",
-              time: "6:00 PM - 12:00 AM",
-              location: "Community Center, Bentonville",
-              description:
-                "Sacred celebration of Mahashivarathri with night-long prayers, bhajans, and special puja ceremonies.",
-            },
-            {
-              title: "Ugadi Celebration 2026",
-              date: "March 29, 2026",
-              time: "4:00 PM - 8:00 PM",
-              location: "Community Center, Bentonville",
-              description:
-                "Celebrate Kannada New Year with traditional food, cultural programs, and fun activities for the whole family.",
-            },
-            {
-              title: "Summer Picnic 2026",
-              date: "June 20, 2026",
-              time: "11:00 AM - 5:00 PM",
-              location: "Lake Wedington",
-              description:
-                "Annual summer picnic with games, sports, and potluck lunch. A wonderful opportunity for community bonding.",
-            },
-            {
-              title: "Kannada Rajyothsava 2026",
-              date: "November 1, 2026",
-              time: "5:00 PM - 10:00 PM",
-              location: "Jones Center, Springdale",
-              description:
-                "Grand celebration of Karnataka Formation Day with cultural performances, awards ceremony, and dinner.",
-            },
-          ].map((event, index) => (
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+          {events.map((event) => (
+
             <div
-              key={index}
-              className="bg-white rounded-3xl shadow-md p-10 hover:shadow-xl transition duration-300"
+              key={event._id + language}
+              className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300"
             >
-              <h2 className="font-heading text-2xl text-primary mb-6">
-                {event.title}
-              </h2>
 
-              <div className="space-y-4 mb-6 text-charcoal">
-                <div className="flex items-center gap-3">
+              {/* Event Image */}
+              {event.image && (
+                <img
+                  src={event.image}
+                  alt={getText(event.title)}
+                  className="w-full h-56 object-cover"
+                />
+              )}
+
+              <div className="p-8">
+
+                {/* Title */}
+                <h2 className="font-heading text-2xl text-primary mb-5">
+                  {getText(event.title)}
+                </h2>
+
+                {/* Date */}
+                <div className="flex items-center gap-3 text-charcoal mb-3">
                   <Calendar className="text-secondary flex-shrink-0" size={20} />
-                  <span>{event.date}</span>
+                  <span>{formatDate(event.date)}</span>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Clock className="text-secondary flex-shrink-0" size={20} />
-                  <span>{event.time}</span>
-                </div>
+                {/* Location */}
+                {event.location && (
+                  <div className="flex items-center gap-3 text-charcoal mb-5">
+                    <MapPin className="text-secondary flex-shrink-0" size={20} />
+                    <span>{getText(event.location)}</span>
+                  </div>
+                )}
 
-                <div className="flex items-center gap-3">
-                  <MapPin className="text-secondary flex-shrink-0" size={20} />
-                  <span>{event.location}</span>
-                </div>
+                {/* Description */}
+                <p className="text-charcoal leading-relaxed">
+                  {getText(event.description)}
+                </p>
+
               </div>
 
-              <p className="text-charcoal leading-relaxed mb-6">
-                {event.description}
-              </p>
-
-              <button className="bg-secondary text-charcoal px-6 py-3 rounded-lg font-semibold hover:bg-support transition">
-                View Details
-              </button>
             </div>
+
           ))}
+
         </div>
+
       </div>
+
     </div>
+    
+
   )
 }
