@@ -29,6 +29,8 @@ import EditEvent from "./admin/pages/EditEvent"
 import AdminSponsors from "./admin/pages/Sponsors"
 import CreateSponsor from "./admin/pages/CreateSponsor"
 import EditSponsor from "./admin/pages/EditSponsor"
+import CreateAdvertisement from "./admin/pages/CreateAdvertisement"
+import AdminAdvertisements from "./admin/pages/Advertisements"
 
 function App() {
   return (
@@ -106,6 +108,9 @@ function App() {
       <Route path="/admin/sponsors" element={<ProtectedRoute><AdminSponsors /></ProtectedRoute>} />
       <Route path="/admin/sponsors/create" element={<ProtectedRoute><CreateSponsor /></ProtectedRoute>} />
       <Route path="/admin/sponsors/edit/:id" element={<ProtectedRoute><EditSponsor /></ProtectedRoute>} />
+
+      <Route path="/admin/ads" element={<ProtectedRoute><AdminAdvertisements /></ProtectedRoute>} />
+      <Route path="/admin/ads/create" element={<ProtectedRoute><CreateAdvertisement /></ProtectedRoute>} />
 
     </Routes>
   )

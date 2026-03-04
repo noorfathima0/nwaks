@@ -8,7 +8,8 @@ import connectDB from "./config/db.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import uploadRputes from './routes/uploadRoutes.js';
 import authRoutes from "./routes/authRoutes.js";
-import sponsorRoutes from "./routes/sponsorRoutes.js"
+import sponsorRoutes from "./routes/sponsorRoutes.js";
+import advertisementRoutes from "./routes/advertisementRoutes.js"
 
 connectDB();
 
@@ -21,6 +22,7 @@ app.use("/api/events", eventRoutes);
 app.use("/api/upload", uploadRputes);
 app.use("/api/auth", authRoutes);
 app.use("/api/sponsors", sponsorRoutes)
+app.use("/api/advertisements", advertisementRoutes)
 
 app.get("/", (req, res) => {
   res.send("NWAKS Backend Running\nMongoDB Connected");
