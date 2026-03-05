@@ -19,6 +19,7 @@ export default function EditAdvertisement() {
 
   const token = localStorage.getItem("token")
 
+  // Fetch advertisement data
   useEffect(() => {
 
     const fetchAdvertisement = async () => {
@@ -26,7 +27,7 @@ export default function EditAdvertisement() {
       try {
 
         const res = await axios.get(
-          `http://localhost:5000/api/ads/${id}`
+          `http://localhost:5000/api/advertisements/${id}`
         )
 
         const ad = res.data
@@ -40,8 +41,10 @@ export default function EditAdvertisement() {
         setActive(ad.active)
 
       } catch (error) {
+
         console.error(error)
         alert("Error fetching advertisement")
+
       }
 
     }
@@ -51,6 +54,7 @@ export default function EditAdvertisement() {
   }, [id])
 
 
+  // Update advertisement
   const updateAdvertisement = async (e) => {
 
     e.preventDefault()
@@ -75,10 +79,11 @@ export default function EditAdvertisement() {
         )
 
         imageUrl = uploadRes.data.imageUrl
+
       }
 
       await axios.put(
-        `http://localhost:5000/api/ads/${id}`,
+        `http://localhost:5000/api/advertisements/${id}`,
         {
           title: {
             en: titleEn,
@@ -99,25 +104,27 @@ export default function EditAdvertisement() {
         }
       )
 
-      navigate("/admin/ads")
+      navigate("/admin/advertisements")
 
     } catch (error) {
 
       console.error(error)
-      alert("Error updating advertisement: " + (error.response?.data?.message || error.message))
+      alert("Error updating advertisement")
 
     }
 
   }
 
+
+  // Delete advertisement
   const deleteAdvertisement = async () => {
 
-    if (!window.confirm("Delete this advertisement?")) return
+    if (!window.confirm("Are you sure you want to delete this advertisement?")) return
 
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/ads/${id}`,
+        `http://localhost:5000/api/advertisements/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -125,14 +132,17 @@ export default function EditAdvertisement() {
         }
       )
 
-      navigate("/admin/ads")
+      navigate("/admin/advertisements")
 
     } catch (error) {
+
       console.error(error)
       alert("Error deleting advertisement")
+
     }
 
   }
+
 
   return (
 
@@ -149,81 +159,74 @@ export default function EditAdvertisement() {
         className="space-y-4 max-w-xl bg-white p-6 rounded-lg shadow"
       >
 
-        {/* Title - English */}
+        {/* Title English */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Title (English)
           </label>
           <input
-            placeholder="Enter advertisement title in English"
-            className="border border-gray-300 p-2 w-full rounded focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="border p-2 w-full rounded"
             value={titleEn}
             onChange={(e) => setTitleEn(e.target.value)}
             required
           />
         </div>
 
-        {/* Title - Kannada */}
+        {/* Title Kannada */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Title (Kannada)
           </label>
           <input
-            placeholder="ಕನ್ನಡದಲ್ಲಿ ಶೀರ್ಷಿಕೆಯನ್ನು ನಮೂದಿಸಿ"
-            className="border border-gray-300 p-2 w-full rounded focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="border p-2 w-full rounded"
             value={titleKn}
             onChange={(e) => setTitleKn(e.target.value)}
             required
           />
         </div>
 
-        {/* Description - English */}
+        {/* Description English */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Description (English)
           </label>
           <textarea
-            placeholder="Enter advertisement description in English"
-            className="border border-gray-300 p-2 w-full rounded focus:ring-2 focus:ring-primary focus:border-transparent"
             rows="3"
+            className="border p-2 w-full rounded"
             value={descriptionEn}
             onChange={(e) => setDescriptionEn(e.target.value)}
             required
           />
         </div>
 
-        {/* Description - Kannada */}
+        {/* Description Kannada */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Description (Kannada)
           </label>
           <textarea
-            placeholder="ಕನ್ನಡದಲ್ಲಿ ವಿವರಣೆಯನ್ನು ನಮೂದಿಸಿ"
-            className="border border-gray-300 p-2 w-full rounded focus:ring-2 focus:ring-primary focus:border-transparent"
             rows="3"
+            className="border p-2 w-full rounded"
             value={descriptionKn}
             onChange={(e) => setDescriptionKn(e.target.value)}
             required
           />
         </div>
 
-        {/* Link (Optional) */}
+        {/* Link */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Link URL (Optional)
           </label>
           <input
-            placeholder="https://example.com"
-            className="border border-gray-300 p-2 w-full rounded focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="border p-2 w-full rounded"
             value={link}
             onChange={(e) => setLink(e.target.value)}
+            placeholder="https://example.com"
           />
-          <p className="text-xs text-gray-500 mt-1">
-            Where users will be redirected when they click the advertisement
-          </p>
         </div>
 
-        {/* Current Image Preview */}
+        {/* Current Image */}
         {currentImage && !image && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -232,28 +235,24 @@ export default function EditAdvertisement() {
             <img
               src={currentImage}
               alt="Current advertisement"
-              className="h-32 w-auto object-cover rounded border"
+              className="h-32 rounded border"
             />
           </div>
         )}
 
-        {/* New Image Upload */}
+        {/* Upload New Image */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            {currentImage ? "Change Image (Optional)" : "Advertisement Image"}
+            {currentImage ? "Change Image (Optional)" : "Upload Image"}
           </label>
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
-            className="border border-gray-300 p-2 w-full rounded file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-primary file:text-white hover:file:bg-primary/90"
           />
-          <p className="text-xs text-gray-500 mt-1">
-            Leave empty to keep current image
-          </p>
         </div>
 
-        {/* Preview if new image selected */}
+        {/* Preview New Image */}
         {image && (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -262,30 +261,29 @@ export default function EditAdvertisement() {
             <img
               src={URL.createObjectURL(image)}
               alt="Preview"
-              className="h-32 w-auto object-cover rounded border"
+              className="h-32 rounded border"
             />
           </div>
         )}
 
-        {/* Active Status */}
-        <div className="flex items-center">
+        {/* Active Toggle */}
+        <div className="flex items-center gap-2">
           <input
             type="checkbox"
-            id="active"
             checked={active}
             onChange={(e) => setActive(e.target.checked)}
-            className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
           />
-          <label htmlFor="active" className="ml-2 block text-sm text-gray-700">
-            Active (Advertisement will be visible on the site)
-          </label>
+          <span className="text-sm text-gray-700">
+            Active (visible on website)
+          </span>
         </div>
 
-        {/* Action Buttons */}
+        {/* Buttons */}
         <div className="flex gap-4 pt-4">
+
           <button
             type="submit"
-            className="bg-primary text-white px-6 py-2 rounded hover:bg-primary/90 transition"
+            className="bg-primary text-white px-6 py-2 rounded hover:bg-primary/90"
           >
             Update Advertisement
           </button>
@@ -293,18 +291,19 @@ export default function EditAdvertisement() {
           <button
             type="button"
             onClick={deleteAdvertisement}
-            className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition"
+            className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700"
           >
-            Delete Advertisement
+            Delete
           </button>
 
           <button
             type="button"
-            onClick={() => navigate("/admin/ads")}
-            className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600 transition"
+            onClick={() => navigate("/admin/advertisements")}
+            className="bg-gray-500 text-white px-6 py-2 rounded hover:bg-gray-600"
           >
             Cancel
           </button>
+
         </div>
 
       </form>

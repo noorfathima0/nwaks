@@ -31,6 +31,10 @@ import CreateSponsor from "./admin/pages/CreateSponsor"
 import EditSponsor from "./admin/pages/EditSponsor"
 import CreateAdvertisement from "./admin/pages/CreateAdvertisement"
 import AdminAdvertisements from "./admin/pages/Advertisements"
+import EditAdvertisement from "./admin/pages/EditAdvertisements"
+import AdminMedia from "./admin/pages/MediaManager"
+import CreateMedia from "./admin/pages/CreateMedia"
+import EditMedia from "./admin/pages/EditMedia"
 
 function App() {
   return (
@@ -109,9 +113,27 @@ function App() {
       <Route path="/admin/sponsors/create" element={<ProtectedRoute><CreateSponsor /></ProtectedRoute>} />
       <Route path="/admin/sponsors/edit/:id" element={<ProtectedRoute><EditSponsor /></ProtectedRoute>} />
 
-      <Route path="/admin/ads" element={<ProtectedRoute><AdminAdvertisements /></ProtectedRoute>} />
-      <Route path="/admin/ads/create" element={<ProtectedRoute><CreateAdvertisement /></ProtectedRoute>} />
+      <Route path="/admin/advertisements" element={<ProtectedRoute><AdminAdvertisements /></ProtectedRoute>} />
+      <Route path="/admin/advertisements/create" element={<ProtectedRoute><CreateAdvertisement /></ProtectedRoute>} />
+      <Route
+          path="/admin/advertisements/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditAdvertisement />
+            </ProtectedRoute>
+          }
+        />
 
+      <Route path="/admin/media" element={<ProtectedRoute><AdminMedia /></ProtectedRoute>} />
+      <Route path="/admin/media/create" element={<ProtectedRoute><CreateMedia /></ProtectedRoute>} />
+      <Route
+        path="/admin/media/edit/:id"
+        element={
+          <ProtectedRoute>
+            <EditMedia />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   )
 }

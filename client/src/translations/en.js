@@ -724,18 +724,9 @@ const en = {
       subtitle: "A look back at our memorable events.",
     },
     
-    /* remove later */
     advertisement: {
-      sponsoredEvent: {
-        title: "Sponsored Event",
-        description: "Support our cultural programs and community events by partnering with NWAKS.",
-        button: "Learn More"
-      },
-      advertise: {
-        title: "Advertise With Us",
-        description: "Reach hundreds of Kannada families in Northwest Arkansas through our events and online presence.",
-        button: "Contact Us"
-      }
+      link: "Link",
+      ads:"Advertisement"
     },
 
     sponsors: {
