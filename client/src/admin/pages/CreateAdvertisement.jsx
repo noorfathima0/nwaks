@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -13,7 +13,7 @@ export default function CreateAdvertisement() {
   const [link, setLink] = useState("")
   const [image, setImage] = useState(null)
   const [imagePreview, setImagePreview] = useState(null)
-  const [active, setActive] = useState(true)
+  const [active] = useState(true)
   const [loading, setLoading] = useState(false)
 
   const token = localStorage.getItem("token")
@@ -53,8 +53,8 @@ export default function CreateAdvertisement() {
       const formData = new FormData()
       formData.append("image", image)
 
-      const uploadRes = await axios.post(
-        "http://localhost:5000/api/upload",
+      const uploadRes = await API.post(
+        "/upload",
         formData,
         {
           headers: {
@@ -68,8 +68,8 @@ export default function CreateAdvertisement() {
 
     }
 
-    await axios.post(
-      "http://localhost:5000/api/advertisements",
+    await API.post(
+      "/advertisements",
       {
         title: {
           en: titleEn,
@@ -227,22 +227,6 @@ export default function CreateAdvertisement() {
                 </p>
               </div>
 
-              {/* Active Status */}
-              <div className="flex items-center p-4 bg-background rounded-lg border border-gray-100">
-                <input
-                  type="checkbox"
-                  id="active"
-                  checked={active}
-                  onChange={(e) => setActive(e.target.checked)}
-                  className="h-5 w-5 text-primary focus:ring-primary border-gray-300 rounded transition-all"
-                />
-                <label htmlFor="active" className="ml-3 block">
-                  <span className="block text-sm font-medium text-charcoal">Active Advertisement</span>
-                  <span className="block text-xs text-gray-500">
-                    When active, the advertisement will be visible on the website
-                  </span>
-                </label>
-              </div>
             </div>
           </div>
 

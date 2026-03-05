@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -54,8 +54,8 @@ export default function CreateMedia() {
         const formData = new FormData()
         formData.append("image", image)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         imageUrl = uploadRes.data.imageUrl
@@ -80,8 +80,8 @@ export default function CreateMedia() {
         mediaData.videoUrl = videoUrl
       }
 
-      await axios.post(
-        "http://localhost:5000/api/media",
+      await API.post(
+        "/media",
         mediaData,
         {
           headers: {

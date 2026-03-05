@@ -1,7 +1,7 @@
 import { useState } from "react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
+import API from "../../api/axios"
 
 export default function CreateEvent() {
   const navigate = useNavigate()
@@ -44,15 +44,15 @@ export default function CreateEvent() {
         const formData = new FormData()
         formData.append("image", image)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         imageUrl = uploadRes.data.imageUrl
       }
 
-      await axios.post(
-        "http://localhost:5000/api/events",
+      await API.post(
+        "/events",
         {
           title: { en: titleEn, kn: titleKn },
           description: { en: descEn, kn: descKn },

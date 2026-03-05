@@ -1,5 +1,5 @@
 import { useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -41,15 +41,15 @@ export default function CreateSponsor() {
         const formData = new FormData()
         formData.append("image", logo)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         logoUrl = uploadRes.data.imageUrl
       }
 
-      await axios.post(
-        "http://localhost:5000/api/sponsors",
+      await API.post(
+        "/sponsors",
         {
           name: {
             en: nameEn,

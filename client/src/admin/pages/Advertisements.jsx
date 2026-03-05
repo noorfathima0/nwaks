@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import API from "../../api/axios"
 import AdminLayout from "../layout/AdminLayout"
 
 export default function AdminAdvertisements() {
@@ -11,8 +11,8 @@ export default function AdminAdvertisements() {
 
   const fetchAdvertisements = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/advertisements"
+      const res = await API.get(
+        "/advertisements"
       )
       setAdvertisements(res.data)
     } catch (error) {
@@ -30,8 +30,8 @@ export default function AdminAdvertisements() {
     if (window.confirm("Are you sure you want to delete this advertisement?")) {
       try {
         const token = localStorage.getItem("token")
-        await axios.delete(
-          `http://localhost:5000/api/advertisements/${id}`,
+        await API.delete(
+          `/advertisements/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -45,6 +45,7 @@ export default function AdminAdvertisements() {
       }
     }
   }
+
 
   if (loading) {
     return (

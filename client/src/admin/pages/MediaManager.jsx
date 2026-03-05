@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import API from "../../api/axios"
 import AdminLayout from "../layout/AdminLayout"
 
 export default function AdminMedia() {
@@ -12,8 +12,8 @@ export default function AdminMedia() {
   const fetchMedia = async () => {
     try {
       setLoading(true)
-      const res = await axios.get(
-        "http://localhost:5000/api/media"
+      const res = await API.get(
+        "/media"
       )
       setMedia(res.data)
     } catch (error) {
@@ -37,8 +37,8 @@ export default function AdminMedia() {
     if (window.confirm("Are you sure you want to delete this media?")) {
       try {
         const token = localStorage.getItem("token")
-        await axios.delete(
-          `http://localhost:5000/api/media/${id}`,
+        await API.delete(
+          `/media/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`

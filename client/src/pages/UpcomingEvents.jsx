@@ -2,6 +2,7 @@ import { Calendar, MapPin } from "lucide-react"
 import { useLanguage } from "../context/LanguageContext"
 import { useEffect, useState } from "react"
 import { getUpcomingEvents } from "../api/events"
+import API from "../api/axios"
 
 export default function UpcomingEvents() {
 

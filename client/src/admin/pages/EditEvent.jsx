@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate, useParams } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -27,8 +27,8 @@ export default function EditEvent() {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/events/${id}`
+        const res = await API.get(
+          `/events/${id}`
         )
         const event = res.data
 
@@ -73,8 +73,8 @@ export default function EditEvent() {
 
     setDeleting(true)
     try {
-      await axios.delete(
-        `http://localhost:5000/api/events/${id}`,
+      await API.delete(
+        `/events/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` }
         }
@@ -100,15 +100,15 @@ export default function EditEvent() {
         const formData = new FormData()
         formData.append("image", image)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         imageUrl = uploadRes.data.imageUrl
       }
 
-      await axios.put(
-        `http://localhost:5000/api/events/${id}`,
+      await API.put(
+        `/events/${id}`,
         {
           title: { en: titleEn, kn: titleKn },
           description: { en: descEn, kn: descKn },

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate, useParams } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -30,8 +30,8 @@ export default function EditSponsor() {
   useEffect(() => {
     const fetchSponsor = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/sponsors/${id}`
+        const res = await API.get(
+          `/sponsors/${id}`
         )
         const sponsor = res.data
 
@@ -76,15 +76,15 @@ export default function EditSponsor() {
         const formData = new FormData()
         formData.append("image", logo)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         logoUrl = uploadRes.data.imageUrl
       }
 
-      await axios.put(
-        `http://localhost:5000/api/sponsors/${id}`,
+      await API.put(
+        `/sponsors/${id}`,
         {
           name: {
             en: nameEn,
@@ -115,8 +115,8 @@ export default function EditSponsor() {
 
     setDeleting(true)
     try {
-      await axios.delete(
-        `http://localhost:5000/api/sponsors/${id}`,
+      await API.delete(
+        `/sponsors/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

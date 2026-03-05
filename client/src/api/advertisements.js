@@ -1,27 +1,19 @@
-import axios from "axios"
+import API from "./axios"
 
-const API = axios.create({
-  baseURL:"http://localhost:5000/api/advertisements"
-})
+export const getAdvertisements = () =>
+  API.get("/advertisements")
 
-export const getAdvertisements = () => API.get("/")
+export const getAllAdvertisements = () =>
+  API.get("/advertisements/admin")
 
-export const getAllAdvertisements = () => API.get("/admin")
+export const createAdvertisement = (data) =>
+  API.post("/advertisements", data)
 
-export const createAdvertisement = (data,token)=>
-  API.post("/",data,{
-    headers:{Authorization:`Bearer ${token}`}
-  })
+export const updateAdvertisement = (id, data) =>
+  API.put(`/advertisements/${id}`, data)
 
-export const updateAdvertisement = (id,data,token)=>
-  API.put(`/${id}`,data,{
-    headers:{Authorization:`Bearer ${token}`}
-  })
+export const deleteAdvertisement = (id) =>
+  API.delete(`/advertisements/${id}`)
 
-export const deleteAdvertisement = (id,token)=>
-  API.delete(`/${id}`,{
-    headers:{Authorization:`Bearer ${token}`}
-  })
-
-export const getAdvertisementById = (id)=>
-  API.get(`/${id}`)
+export const getAdvertisementById = (id) =>
+  API.get(`/advertisements/${id}`)

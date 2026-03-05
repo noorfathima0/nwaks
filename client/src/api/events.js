@@ -1,7 +1,7 @@
-import axios from "axios"
+import API from "./axios"
 
-const API = "http://localhost:5000/api/events"
+export const getUpcomingEvents = () =>
+  API.get("/events/upcoming")
 
-export const getUpcomingEvents = () => axios.get(`${API}/upcoming`)
-
-export const getPastEvents = () => axios.get(`${API}/past`)
+export const getPastEvents = () =>
+  API.get("/events/past")

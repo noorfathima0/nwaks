@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
+import API from "../../api/axios"
 
 export default function EventsList() {
   const [events, setEvents] = useState([])
@@ -10,7 +10,7 @@ export default function EventsList() {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/events")
+      const res = await API.get("/events")
       setEvents(res.data)
     } catch (error) {
       console.error("Error fetching events:", error)

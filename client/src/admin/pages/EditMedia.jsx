@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import axios from "axios"
+import API from "../../api/axios"
 import { useNavigate, useParams } from "react-router-dom"
 import AdminLayout from "../layout/AdminLayout"
 
@@ -36,8 +36,8 @@ export default function EditMedia() {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/media/${id}`
+        const res = await API.get(
+          `/media/${id}`
         )
 
         const media = res.data
@@ -85,8 +85,8 @@ export default function EditMedia() {
         const formData = new FormData()
         formData.append("image", image)
 
-        const uploadRes = await axios.post(
-          "http://localhost:5000/api/upload",
+        const uploadRes = await API.post(
+          "/upload",
           formData
         )
         imageUrl = uploadRes.data.imageUrl
@@ -111,8 +111,8 @@ export default function EditMedia() {
         mediaData.videoUrl = videoUrl
       }
 
-      await axios.put(
-        `http://localhost:5000/api/media/${id}`,
+      await API.put(
+        `/media/${id}`,
         mediaData,
         {
           headers: {
@@ -135,8 +135,8 @@ export default function EditMedia() {
 
     setDeleting(true)
     try {
-      await axios.delete(
-        `http://localhost:5000/api/media/${id}`,
+      await API.delete(
+        `/media/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

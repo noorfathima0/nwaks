@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import API from "../../api/axios"
 import AdminLayout from "../layout/AdminLayout"
 
 export default function AdminSponsors() {
@@ -9,8 +9,8 @@ export default function AdminSponsors() {
 
   const fetchSponsors = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/sponsors"
+      const res = await API.get(
+        "/sponsors"
       )
       setSponsors(res.data)
     } catch (error) {
