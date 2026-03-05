@@ -1,3 +1,5 @@
+import { Newspaper } from "lucide-react"
+
 const en = {
     hero: {
       preTitle: "Welcome to",
@@ -334,26 +336,8 @@ const en = {
      media: {
       title: "Media",
       subtitle: "Explore our events, memories, and community updates",
-      sections: [
-        {
-          title: "Photo Gallery",
-          description: "Browse through photos from our events and celebrations",
-          button: "View Gallery",
-          icon: "Image"
-        },
-        {
-          title: "Video Gallery",
-          description: "Watch recorded performances and event highlights",
-          button: "Watch Videos",
-          icon: "Video"
-        },
-        {
-          title: "Newsletters",
-          description: "Read our community newsletters and announcements",
-          button: "Read Issues",
-          icon: "FileText"
-        }
-      ]
+      photo : "Photos",
+      video : "Videos"
     },
 
     contact: {

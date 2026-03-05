@@ -68,6 +68,22 @@ export default function AdminMedia() {
       : "bg-charcoal/10 text-charcoal border-charcoal/20"
   }
 
+  const getYoutubeId = (url) => {
+    const reg =
+      /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?v=))([^#&?]*).*/
+    const match = url?.match(reg)
+    return match && match[7].length === 11 ? match[7] : null
+  }
+
+  const getVimeoId = (url) => {
+    const match = url?.match(/vimeo\.com\/(\d+)/)
+    return match ? match[1] : null
+  }
+
+  const isDirectVideo = (url) => {
+    return url?.match(/\.(mp4|webm|ogg)$/i)
+  }
+
   return (
     <AdminLayout>
       <div className="space-y-8">
@@ -155,20 +171,50 @@ export default function AdminMedia() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-charcoal to-gray-800">
-                          {item.videoUrl ? (
-                            <div className="text-center text-white">
-                              <svg className="h-12 w-12 mx-auto mb-2 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                              <p className="text-xs truncate max-w-[180px] px-3 py-1 bg-black/30 rounded-full mx-auto">
-                                {item.videoUrl.split('/').pop()}
-                              </p>
-                            </div>
-                          ) : (
-                            <span className="text-gray-400">No video URL</span>
-                          )}
+                        <div className="w-full h-full bg-black">
+
+                          {(() => {
+                            const youtubeId = getYoutubeId(item.videoUrl)
+                            const vimeoId = getVimeoId(item.videoUrl)
+                            const isFile = isDirectVideo(item.videoUrl)
+
+                            if (youtubeId) {
+                              return (
+                                <iframe
+                                  className="w-full h-full"
+                                  src={`https://www.youtube.com/embed/${youtubeId}`}
+                                  allowFullScreen
+                                />
+                              )
+                            }
+
+                            if (vimeoId) {
+                              return (
+                                <iframe
+                                  className="w-full h-full"
+                                  src={`https://player.vimeo.com/video/${vimeoId}`}
+                                  allowFullScreen
+                                />
+                              )
+                            }
+
+                            if (isFile) {
+                              return (
+                                <video controls className="w-full h-full object-cover">
+                                  <source src={item.videoUrl} />
+                                </video>
+                              )
+                            }
+
+                            return (
+                              <iframe
+                                className="w-full h-full"
+                                src={item.videoUrl}
+                                allowFullScreen
+                              />
+                            )
+                          })()}
+
                         </div>
                       )}
 
