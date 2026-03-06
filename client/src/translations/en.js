@@ -642,60 +642,13 @@ const en = {
     communitySupport: {
       title: "Community Support",
       subtitle: "How we support and care for our community members",
-      intro: "At NWAKS, we believe in taking care of our community. Through various support programs, we ensure that no member of our community is left behind during times of need.",
-      programs: [
-        {
-          title: "Emergency Assistance",
-          description: "Financial and emotional support for community members facing emergencies.",
-          icon: "HeartHandshake"
-        },
-        {
-          title: "Volunteer Network",
-          description: "A network of volunteers ready to help community members in need.",
-          icon: "Users"
-        },
-        {
-          title: "New Family Welcome",
-          description: "Helping new families settle in Northwest Arkansas with guidance and support.",
-          icon: "Home"
-        },
-        {
-          title: "Scholarship Fund",
-          description: "Educational scholarships for deserving students in our community.",
-          icon: "GraduationCap"
-        }
-      ]
+      coming: "Coming Soon..."
     },
 
     communityInitiatives: {
       title: "Community Initiatives",
       subtitle: "Making a positive impact in our community and beyond",
-      initiatives: [
-        {
-          title: "Environment Day",
-          description: "Annual tree planting and environmental awareness activities.",
-          metric: "200+ trees planted",
-          icon: "Leaf"
-        },
-        {
-          title: "Book Donation Drive",
-          description: "Collecting and donating Kannada books to schools in Karnataka.",
-          metric: "1000+ books donated",
-          icon: "BookOpen"
-        },
-        {
-          title: "Charity Fundraisers",
-          description: "Fundraising events for various social causes in Karnataka.",
-          metric: "$15,000+ raised",
-          icon: "HeartHandshake"
-        },
-        {
-          title: "Cultural Exchange",
-          description: "Programs to share Kannada culture with the broader Arkansas community.",
-          metric: "5 cultural events",
-          icon: "Globe"
-        }
-      ]
+      coming: "Coming Soon..."
     },
 
     upcomingEvents: {
@@ -716,18 +669,17 @@ const en = {
     sponsors: {
       title: "Our Sponsors",
       subtitle: "Thank you to our generous sponsors who make our events possible",
+      coming: "Coming Soon...",
+      des: "Our Sponsors will be anounced shortly.",
       platinum: {
-        title: "Platinum Sponsors",
-        sponsors: ["ABC Enterprises", "XYZ Corporation"]
+        title: "Platinum Sponsors"
       },
       visit: "Visit Website",
       gold: {
-        title: "Gold Sponsors",
-        sponsors: ["Tech Solutions LLC", "Global Services Inc"]
+        title: "Gold Sponsors"
       },
       silver: {
-        title: "Silver Sponsors",
-        sponsors: ["Local Business Co", "Community Store", "Family Restaurant"]
+        title: "Silver Sponsors"
       },
       cta: {
         title: "Become a Sponsor",

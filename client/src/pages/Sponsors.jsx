@@ -43,6 +43,11 @@ export default function Sponsors() {
   const gold = sponsors.filter(s => s.category === "gold")
   const silver = sponsors.filter(s => s.category === "silver")
 
+  const noSponsors =
+    platinum.length === 0 &&
+    gold.length === 0 &&
+    silver.length === 0
+
   const SponsorCard = ({ sponsor, large }) => (
 
     <div className={`bg-white ${large ? "p-10 rounded-3xl shadow-lg" : "p-6 rounded-xl shadow-sm"} text-center hover:shadow-xl transition`}>
@@ -102,6 +107,16 @@ export default function Sponsors() {
 
       <div className="container mx-auto px-6 py-24 space-y-24">
 
+        {noSponsors && (
+          <div className="text-center py-20">
+            <h2 className="font-heading text-3xl text-primary mb-4">
+              {t.sponsors.coming}
+            </h2>
+            <p className="text-charcoal text-lg">
+              {t.sponsors.des}
+            </p>
+          </div>
+        )}
 
         {/* PLATINUM */}
         {platinum.length > 0 && (

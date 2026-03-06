@@ -187,7 +187,7 @@ export default function Navbar() {
               >
                 <Globe size={16} />
                 <span>
-                  {language === "EN" ? t.navbar.language.english : t.navbar.language.kannada}
+                  {language === "EN" ? "ಕನ್ನಡ" : "English"}
                 </span>
               </button>
             </div>
@@ -205,7 +205,7 @@ export default function Navbar() {
                 aria-label="Toggle language"
               >
                 <Globe size={18} />
-                <span className="text-xs font-medium">{language === "EN" ? "EN" : "KN"}</span>
+                <span className="text-xs font-medium">{language === "EN" ? "KN" : "EN"}</span>
               </button>
 
               {/* Mobile Menu Button */}
