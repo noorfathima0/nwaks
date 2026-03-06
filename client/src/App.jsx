@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom"
+import { Toaster } from "react-hot-toast"
 
 import MainLayout from "./layout/MainLayout"
 import Home from "./pages/Home"
@@ -38,17 +39,15 @@ import EditMedia from "./admin/pages/EditMedia"
 
 function App() {
   return (
+    <><Toaster position="top-right" reverseOrder={false} />
     <Routes>
 
       {/* PUBLIC WEBSITE */}
       <Route
         path="/"
-        element={
-          <MainLayout>
-            <Home />
-          </MainLayout>
-        }
-      />
+        element={<MainLayout>
+          <Home />
+        </MainLayout>} />
 
       <Route path="/kannada-shaale/about" element={<MainLayout><ShaaleAbout /></MainLayout>} />
       <Route path="/kannada-shaale/team" element={<MainLayout><ShaaleTeam /></MainLayout>} />
@@ -79,36 +78,24 @@ function App() {
 
       <Route
         path="/admin/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
+        element={<ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>} />
       <Route
         path="/admin/events"
-        element={
-          <ProtectedRoute>
-            <EventsList />
-          </ProtectedRoute>
-        }
-      />
+        element={<ProtectedRoute>
+          <EventsList />
+        </ProtectedRoute>} />
       <Route
         path="/admin/events/create"
-        element={
-          <ProtectedRoute>
-            <CreateEvent />
-          </ProtectedRoute>
-        }
-      />
+        element={<ProtectedRoute>
+          <CreateEvent />
+        </ProtectedRoute>} />
       <Route
         path="/admin/events/edit/:id"
-        element={
-          <ProtectedRoute>
-            <EditEvent />
-          </ProtectedRoute>
-        }
-      />
+        element={<ProtectedRoute>
+          <EditEvent />
+        </ProtectedRoute>} />
       <Route path="/admin/sponsors" element={<ProtectedRoute><AdminSponsors /></ProtectedRoute>} />
       <Route path="/admin/sponsors/create" element={<ProtectedRoute><CreateSponsor /></ProtectedRoute>} />
       <Route path="/admin/sponsors/edit/:id" element={<ProtectedRoute><EditSponsor /></ProtectedRoute>} />
@@ -116,25 +103,20 @@ function App() {
       <Route path="/admin/advertisements" element={<ProtectedRoute><AdminAdvertisements /></ProtectedRoute>} />
       <Route path="/admin/advertisements/create" element={<ProtectedRoute><CreateAdvertisement /></ProtectedRoute>} />
       <Route
-          path="/admin/advertisements/edit/:id"
-          element={
-            <ProtectedRoute>
-              <EditAdvertisement />
-            </ProtectedRoute>
-          }
-        />
+        path="/admin/advertisements/edit/:id"
+        element={<ProtectedRoute>
+          <EditAdvertisement />
+        </ProtectedRoute>} />
 
       <Route path="/admin/media" element={<ProtectedRoute><AdminMedia /></ProtectedRoute>} />
       <Route path="/admin/media/create" element={<ProtectedRoute><CreateMedia /></ProtectedRoute>} />
       <Route
         path="/admin/media/edit/:id"
-        element={
-          <ProtectedRoute>
-            <EditMedia />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+        element={<ProtectedRoute>
+          <EditMedia />
+        </ProtectedRoute>} />
+    </Routes></>
+    
   )
 }
 

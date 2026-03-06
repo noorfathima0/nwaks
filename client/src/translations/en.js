@@ -72,7 +72,7 @@ const en = {
       contact: {
         title: "Contact Us",
         address: "Northwest Arkansas, USA",
-        phone: "+1 (479) 555-0123",
+        phone: "+1 (201) 214-2678",
         email: "info@nwaks.org"
       },
       social: {
@@ -82,7 +82,7 @@ const en = {
         instagramLabel: "Instagram",
         youtubeLabel: "YouTube"
       },
-      copyright: "© {year} NorthWest Arkansas Kannada Sangha. All Rights Reserved."
+      copyright: "© {year} Website built and maintained by : NudiMinds.com."
     },
 
     aboutPreview: {
@@ -351,7 +351,7 @@ const en = {
         },
         phone: {
           title: "Phone",
-          number: "+1 (123) 456-7890"
+          number: "+1 (201) 214-2678"
         },
         email: {
           title: "Email",

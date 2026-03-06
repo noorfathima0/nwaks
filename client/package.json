@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "axios": "^1.13.6",
     "framer-motion": "^12.34.2",
     "intlayer": "^8.1.4",
@@ -17,6 +18,7 @@
     "math-random": "^2.0.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-intlayer": "^8.1.4",
     "react-player": "^3.4.0",
     "react-router-dom": "^7.13.0"

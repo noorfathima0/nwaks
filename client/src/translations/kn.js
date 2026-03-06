@@ -70,7 +70,7 @@ const kn = {
       contact: {
         title: "ಸಂಪರ್ಕಿಸಿ",
         address: "ವಾಯುವ್ಯ ಅರ್ಕಾನ್ಸಾಸ್, ಯುಎಸ್ಎ",
-        phone: "+೧ (೪೭೯) ೫೫೫-೦೧೨೩",
+        phone: "+1 (201) 214-2678",
         email: "info@nwaks.org"
       },
       social: {
@@ -80,7 +80,7 @@ const kn = {
         instagramLabel: "ಇನ್‌ಸ್ಟಾಗ್ರಾಮ್",
         youtubeLabel: "ಯೂಟ್ಯೂಬ್"
       },
-      copyright: "© {year} ವಾಯುವ್ಯ ಅರ್ಕಾನ್ಸಾಸ್ ಕನ್ನಡ ಸಂಘ. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
+      copyright: "© {year} ವೆಬ್‌ಸೈಟ್ ನಿರ್ಮಿಸಿ ನಿರ್ವಹಿಸುತ್ತಿರುವುದು : NudiMinds.com."
     },
 
     aboutPreview: {
@@ -349,7 +349,7 @@ const kn = {
         },
         phone: {
           title: "ದೂರವಾಣಿ",
-          number: "+೧ (೧೨೩) ೪೫೬-೭೮೯೦"
+          number: "+1 (201) 214-2678"
         },
         email: {
           title: "ಇಮೇಲ್",

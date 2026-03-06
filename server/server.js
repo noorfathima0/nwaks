@@ -12,7 +12,6 @@ import authRoutes from "./routes/authRoutes.js";
 import sponsorRoutes from "./routes/sponsorRoutes.js";
 import advertisementRoutes from "./routes/advertisementRoutes.js";
 import mediaRoutes from "./routes/mediaRoutes.js"
-import contactRoutes from "./routes/contactRoutes.js"
 
 connectDB();
 
@@ -34,7 +33,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/sponsors", sponsorRoutes)
 app.use("/api/advertisements", advertisementRoutes)
 app.use("/api/media", mediaRoutes)
-app.use("/api/contact", contactRoutes)
 
 app.get("/", (req, res) => {
   res.send("NWAKS Backend Running \n MongoDB Connected");
